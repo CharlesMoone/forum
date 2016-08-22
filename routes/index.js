@@ -6,7 +6,7 @@ router.get('/', function (req, res) {
         res.redirect('/user/login');
         return ;
     }
-    res.render('index', { title: 'Welcome' });
+    res.render('index', {title: 'Welcome', account: req.session.account });
 });
 
 module.exports = router;

@@ -19,6 +19,7 @@ router.post('/login', function (req, res, next) {
         } else {
             req.session.status = true;
             req.session.userId = doc._id;
+            req.session.account = doc.account;
             res.send({code: '001', message: 'success', result: null});
         }
     });
@@ -39,6 +40,7 @@ router.post('/register', function (req, res, next) {
                 } else {
                     req.session.status = true;
                     req.session.userId = doc._id;
+                    req.session.account = doc.account;
                     res.send({code: '001', message: 'success', result: null});
                 }
             });
