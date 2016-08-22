@@ -23,7 +23,7 @@
 }
 .popMsg .tip {
     width: 360px;
-    height: 160px;
+    height: 138px;
     padding: 20px;
     background: #ffffff;
     -webkit-animation: popTip 0.3s;
@@ -87,72 +87,60 @@
     from {
         width: 100px;
         height: 20px;
-        /*margin-top: 290px;*/
     }
     to {
         width: 360px;
-        height: 160px;
-        /*margin-top: 200px;*/
+        height: 138px;
     }
 }
 @-webkit-keyframes popTip {
     from {
         width: 100px;
         height: 20px;
-        /*margin-top: 290px;*/
     }
     to {
         width: 360px;
-        height: 160px;
-        /*margin-top: 200px;*/
+        height: 138px;
     }
 }
 @-khtml-keyframes popTip {
     from {
         width: 100px;
         height: 20px;
-        /*margin-top: 290px;*/
     }
     to {
         width: 360px;
-        height: 160px;
-        /*margin-top: 200px;*/
+        height: 138px;
     }
 }
 @-moz-keyframes popTip {
     from {
         width: 100px;
         height: 20px;
-        /*margin-top: 290px;*/
     }
     to {
         width: 360px;
-        height: 160px;
-        /*margin-top: 200px;*/
+        height: 138px;
     }
 }
 @-ms-keyframes popTip {
     from {
         width: 100px;
         height: 20px;
-        /*margin-top: 290px;*/
     }
     to {
         width: 360px;
-        height: 160px;
-        /*margin-top: 200px;*/
+        height: 138px;
     }
 }
 @-o-keyframes popTip {
     from {
         width: 100px;
         height: 20px;
-        /*margin-top: 290px;*/
     }
     to {
         width: 360px;
-        height: 160px;
-        /*margin-top: 200px;*/
+        height: 138px;
     }
 }
 @keyframes popWord {
