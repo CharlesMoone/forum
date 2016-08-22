@@ -1,5 +1,5 @@
 {
-  "name": "forum",
+  "name": "work",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,9 @@
     "ejs": "~2.4.1",
     "express": "~4.13.4",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "mongoose": "4.5.4",
+    "express-session":  "1.14.0",
+    "formidable" : "latest"
   }
 }
