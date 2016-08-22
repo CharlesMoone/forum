@@ -1,4 +1,4 @@
-//"use strict";
+"use strict";
 
 var Login = function (obj) {
     this.url = obj.url || "";
@@ -8,14 +8,13 @@ var Login = function (obj) {
     this.callback = obj.callback || function (data) {console.log(data)};
 };
 Login.prototype.check = function () {
-    console.log(!!this.url && !!this.data);
     return !!this.url && !!this.data;
 };
 Login.prototype.submit = function () {
     var _this = this;
 
     if (!this.check()) {
-        new Inform({title: 'Inform', content: 'url && data can\'t be null!'}).alert(function () {
+        new Inform({title: 'Inform', content: 'account or password can\'t be null!'}).alert(function () {
             $('.popMsg').remove();
         });
         return this;
@@ -51,19 +50,37 @@ Login.prototype.submit = function () {
 };
 
 $(document).ready(function () {
-    $("#register").click(function () {
+    $.fn.exist = function () {
+        var result;
+        $(this).length === 0 ? result = false : result = true;
+        return result;
+    };
+
+    var $input = $("input");
+    var $register = $("#register");
+    var $login = $("#login");
+
+    $input.keydown(function (e) {
+        var popMsg = $('.popMsg');
+        if (e.which === 13){
+            popMsg.exist() ? popMsg.remove() : $login.click();
+        }
+    });
+
+    $register.click(function () {
+        var $account = $("#account").val();
+        var $password = $("#password").val();
+        var data;
+        data = ($account && $password) ? {account: $account, password: $password} : null;
         (new Login({
             url: '/user/register',
-            data: {
-                account: $("#account").val(),
-                password: $("#password").val()
-            },
+            data: data,
             callback: function (data) {
-                console.log(data);
+                window.location.reload();
             }
         })).submit();
     });
-    $("#login").click(function () {
+    $login.click(function () {
         var $account = $("#account").val();
         var $password = $("#password").val();
         var data;
@@ -72,7 +89,7 @@ $(document).ready(function () {
             url: '/user/login',
             data: data,
             callback: function (data) {
-                console.log(data);
+                window.location.reload();
             }
         })).submit();
     })

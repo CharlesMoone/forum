@@ -28,7 +28,7 @@ function initData(data, db) {
 }
 
 function addUser(data, callback) {
-    data = initData({account: data.account}, UserSchema);
+    data = initData(data, UserSchema);
     (new UserModel(data)).save(function (err, doc) {
         callback(err, doc);
     });

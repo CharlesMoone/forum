@@ -98,11 +98,11 @@ EventBind.prototype = {
 
         //添加down位置的文字以及关闭文字
         var p = document.createElement('P');
-        p.innerHTML = "确认";
+        p.innerHTML = "confirm";
         p.setAttribute('name', 'confirm');
         var pClose = document.createElement('P');
         pClose.setAttribute('name', 'popOut');
-        pClose.innerHTML = "取消";
+        pClose.innerHTML = "cancel";
         this.down.innerHTML = null;
         this.insert(this.down, p).insert(this.down, pClose);
     },
@@ -152,11 +152,13 @@ Inform.prototype.alert = function (callback) {
     this.middle.innerHTML = null;
     this.insert(this.middle, span);
 
+    var body = document.getElementsByTagName('body')[0];
+
     /**
      * 调用showMsg方法
      * @target 要把message弹窗在body里显示
      */
-    this.showMsg(document.getElementsByTagName('body')[0]);
+    this.showMsg(body);
 
     var that = this;
     //冒泡事件绑定,判断点击的目标是否name为confirm,如果是则调用删除方法。
