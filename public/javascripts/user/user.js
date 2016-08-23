@@ -70,8 +70,7 @@ $(document).ready(function () {
     $register.click(function () {
         var $account = $("#account").val();
         var $password = $("#password").val();
-        var data;
-        data = ($account && $password) ? {account: $account, password: $password} : null;
+        var data = ($account && $password) ? {account: $account, password: $password} : null;
         (new Login({
             url: '/user/register',
             data: data,

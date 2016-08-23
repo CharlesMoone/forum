@@ -3,17 +3,18 @@ body {
     flex-flow: column nowrap;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    min-width: 1040px;
     background: url("/images/bg.png") no-repeat 0 0/ 100% auto;
 }
 #top {
     width: 100vw;
     text-align: right;
-    padding: 15px 30px 0 0;
+    padding: 15px 0 0;
     color: white;
     font-size: 18px;
 }
 #quit {
+    margin: 0 15px 0 0;
     cursor: pointer;
     -webkit-transition: color 0.5s;
     -moz-transition: color 0.5s;
@@ -77,14 +78,9 @@ nav div {
     -moz-border-radius: 50%;
     border-radius: 50%;
 }
-nav div:first-child {
-    background-image: url('/images/write.png');
-}
-nav div:nth-child(2) {
-    background-image: url('/images/all.png');
-}
-nav div:last-child {
-    background-image: url('/images/my.png');
+nav div:hover {
+    background-color: #1885BA;
+    cursor: pointer;
 }
 section {
     display: inherit;
@@ -95,28 +91,176 @@ section article {
     background: #FBFBFB;
     margin: 0 0 20px 0;
     padding: 10px 15px;
+    min-width: 867px;
     min-height: 93px;
-    min-width: 897px;
 }
 section article h4 {
     font-size: 24px;
     font-weight: normal;
+    color: #1885BA;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 }
-section article p {
-    font-size: 20px;
-    width: 897px;
+section h4 span {
+    flex: 1;
+}
+section h4 > p {
+    width: 26px;
+    height: 26px;
+    background: url("/images/remove.png") 0 0/100% 100% no-repeat;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}
+section h4 > p:hover {
+    cursor: pointer;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+section article > p {
+    font-size: 16px;
+    width: 867px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: rgba(0, 0, 0, 0.5);
 }
-section article span {
+section article > span {
     display: inline-block;
-    font-size: 18px;
-    width: 445px;
+    font-size: 14px;
+    width: 427px;
+    color: rgba(0, 0, 0, 0.5);
 }
 section article span:nth-child(3) {
     cursor: pointer;
 }
 section article span:last-child {
     text-align: right;
+}
+#newNote, #newReply {
+    display: none;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+#noteTitle, #noteContent, #replyContent {
+    border: none;
+    width: 500px;
+    resize: none;
+    font-size: 20px;
+    text-indent: 10px;
+    margin: 0 0 20px 0;
+}
+#noteTitle {
+    height: 50px;
+}
+#noteContent, #replyContent {
+    padding: 10px 0;
+    height: 200px;
+}
+.operation {
+    display: inherit;
+    flex-flow: row nowrap;
+    width: 500px;
+}
+.operation > * {
+    flex: 1;
+    border: none;
+    background-color: white;
+    font-size: 20px;
+    padding: 5px 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#cancel {
+    margin: 0 10px 0 0;
+}
+#cancel:hover {
+    background: #E26359;
+    color: white;
+}
+#submit {
+    margin: 0 0 0 10px;
+}
+#submit:hover {
+    background: #1885BA;
+    color: white;
+}
+
+
+.pagination {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.pagination li {
+    border: 1px solid #dddddd;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    padding: 11px 5px;
+    margin: 0 5px;
+    width: 30px;
+    box-sizing: content-box;
+    background: #ffffff;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.pagination li:hover {
+    background: #EEEEEE;
+}
+.pagination .active {
+    background-color: #09C;
+    border: 1px solid #09C;
+    color: #ffffff;
+}
+.pagination .active:hover {
+    background: #09C;
+}
+.pageTip {
+    flex: 1;
+    text-align: right;
+    padding: 0 20px 0 0;
+}
+.pagination+input {
+    margin: 0 20px;
+    width: 40px;
+    height: 32px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-align: center;
+}
+.pageGo {
+    padding: 0 8px;
+    line-height: 30px;
+    color: #333;
+    border: 1px solid #dddddd;
+    background-color: #f7f7f7;
+}
+footer {
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 1040px;
+    height: 200px;
 }

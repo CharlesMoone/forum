@@ -60,7 +60,7 @@ button, input, select, textarea {
     font: 12px/1.5 tahoma, arial, sans-serif;
     vertical-align: middle
 }
-button, textarea {
+button {
     cursor: pointer
 }
 
@@ -115,4 +115,8 @@ h5 {
 
 h6 {
     font-size: 9px;
+}
+
+.hidden {
+    display: none;
 }

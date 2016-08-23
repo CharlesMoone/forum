@@ -7,7 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var user = require('./routes/user/userController');
+var user = require('./routes/controller/userController');
+var note = require('./routes/controller/noteController');
+var reply = require('./routes/controller/replyController');
 
 var app = express();
 
@@ -26,6 +28,8 @@ app.use(session({secret:"forum"}));
 
 app.use('/', routes);
 app.use('/user', user);
+app.use('/note', note);
+app.use('/reply', reply);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,25 +42,25 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-// if (app.get('env') === 'development') {
-//   app.use(function(err, req, res, next) {
-//     res.status(err.status || 500);
-//     res.render('error', {
-//       message: err.message,
-//       error: err
-//     });
-//   });
-// }
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
 
 // production error handler
-// no stacktraces leaked to user
-// app.use(function(err, req, res, next) {
-//   res.status(err.status || 500);
-//   res.render('error', {
-//     message: err.message,
-//     error: {}
-//   });
-// });
+// no stacktraces leaked to controller
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
 
 
 module.exports = app;

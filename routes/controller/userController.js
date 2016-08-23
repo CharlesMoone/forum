@@ -36,7 +36,7 @@ router.post('/register', function (req, res, next) {
                 if (err) {
                     res.send({code: '003', message: 'database error!', result: null});
                 } else if (!doc) {
-                    res.send({code: '002', message: 'account or password wrong!', result: null});
+                    res.send({code: '004', message: 'doc save error!', result: null});
                 } else {
                     req.session.status = true;
                     req.session.userId = doc._id;

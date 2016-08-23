@@ -6,10 +6,12 @@ $(document).ready(function () {
 
     var $quit = $("#quit");
     var $write = $("#write");
-    var $newNote = $("#newNote");
+    var $newReply = $("#newReply");
+    var $noteBody = $("#noteBody");
+
+    var id = getParameterByName('id', window.location.href);
 
     var useful = [];
-
     var paginate = new Paginate({
         id: 'noteBody',
         article: useful,
@@ -18,7 +20,7 @@ $(document).ready(function () {
             $article.click(function (e) {
                 if ($(e.target).hasClass('remove')) {
                     $.ajax({
-                        url: '/note/remove',
+                        url: '/reply/remove',
                         method: 'post',
                         dataType: 'json',
                         data: {
@@ -31,7 +33,7 @@ $(document).ready(function () {
                                 });
                                 return ;
                             }
-                            getAll(useful, paginate);
+                            getAll(id, useful, paginate);
                         },
                         error: function (err) {
                             console.error(err);
@@ -40,14 +42,12 @@ $(document).ready(function () {
                             });
                         }
                     });
-                } else {
-                    window.location.href = '/reply?id=' + $(this).find('input[type=hidden]').data('id');
                 }
             });
         }
     });
 
-    getAll(useful, paginate);
+    getAll(id, useful, paginate);
 
     $quit.click(function () {
         $.ajax({url: '/user/quit', method: 'post', dataType: 'json', success: function (data) {
@@ -56,30 +56,29 @@ $(document).ready(function () {
     });
 
     $write.click(function () {
-        $newNote.css('display', 'inherit');
+        $newReply.css('display', 'inherit');
     });
 
     var $submit = $("#submit");
     var $cancel = $("#cancel");
 
     $submit.click(function () {
-        var noteTitle = $("#noteTitle").val();
-        var noteContent = $("#noteContent").val();
-        var data = (noteTitle && noteContent) ? {
-            noteTitle: noteTitle,
-            noteContent: noteContent
+        var replyContent = $("#replyContent").val();
+        var data = replyContent ? {
+            replyContent: replyContent
         } : null;
         if (!data) {
-            new Inform({title: 'Inform', content: 'title or content can\'t be null!'}).alert(function () {
+            new Inform({title: 'Inform', content: 'content can\'t be null!'}).alert(function () {
                 $('.popMsg').remove();
             });
             return ;
         }
+        data.targetId = id;
         $.ajax({
-            url: '/note/new',
+            url: '/reply/add',
             method: 'post',
-            async: false,
             dataType: 'json',
+            async: false,
             data: data,
             success: function (data) {
                 if (data.code !== '001') {
@@ -88,9 +87,9 @@ $(document).ready(function () {
                     });
                     return ;
                 }
-                getAll(useful, paginate);
-                $("#noteContent").val('');
-                $newNote.css('display', 'none');
+                getAll(id, useful, paginate);
+                $("#replyContent").val('');
+                $newReply.css('display', 'none');
             },
             error: function (err) {
                 console.error(err);
@@ -102,16 +101,19 @@ $(document).ready(function () {
     });
 
     $cancel.click(function () {
-        $newNote.css('display', 'none');
+        $newReply.css('display', 'none');
     });
 });
 
-function getAll(useful, paginate) {
+function getAll(id, useful, paginate) {
     useful = [];
     $.ajax({
-        url: '/note/all',
+        url: '/reply/all',
         method: 'post',
         dataType: 'json',
+        data: {
+            targetId: id
+        },
         success: function (data) {
             if (data.code !== '001') {
                 new Inform({title: 'Inform', content: data.message}).alert(function () {
@@ -130,9 +132,9 @@ function getAll(useful, paginate) {
             for (var i = 0; i < data.length; i ++) {
                 useful[i] = {
                     _id: data[i]._id,
-                    title: data[i].noteTitle,
-                    content: data[i].noteContent,
-                    leftSpan: data[i].account,
+                    title: data[i].account,
+                    content: data[i].replyContent,
+                    leftSpan: '',
                     rightSpan: $.timeConvert(data[i].createTime),
                     sort: data[i].createTime,
                     hidden: data[i].account !== $("#name").html() ? 'hidden' : ''
@@ -152,5 +154,15 @@ function getAll(useful, paginate) {
 }
 
 function timeSort(a, b) {
-    return b.sort - a.sort;
+    return a.sort - b.sort;
 }
+
+var getParameterByName = function (name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+};

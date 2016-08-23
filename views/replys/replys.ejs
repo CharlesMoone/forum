@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/reset.css" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/message.css" />
+    <style>
+        nav div:first-child {
+            background-image: url('/images/back.png');
+        }
+        nav div:nth-child(2) {
+            background-image: url('/images/write.png');
+        }
+        section article:first-child h4 p {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="top"><span>welcome , <span id="name"><%= account %></span></span>&nbsp;&nbsp;<span id="quit">quit</span></div>
+<header>
+    <img src="/images/logo.png" alt="logo" />
+    <article>
+        <h1>KNOWNSEC</h1>
+        <p><span>Major</span><span>Absorbed</span><span>Share</span></p>
+    </article>
+</header>
+<content>
+    <nav>
+        <a href="/"><div id="back"></div></a>
+        <div id="write"></div>
+    </nav>
+    <section id="noteBody">
+    </section>
+</content>
+<div>
+    <ul class="pagination">
+        <li class="pageBefore">‹</li>
+        <li class="pageNext">›</li>
+    </ul>
+    <!--<input class="pageTarget" type="text" name="pageTarget" />-->
+    <!--<span class="pageGo">GO</span>-->
+</div>
+<footer>
+    <p>design & created by charlesMoone</p>
+</footer>
+<div id="newReply">
+    <textarea name="replyContent" id="replyContent" placeholder="write your reply here"></textarea>
+    <div class="operation">
+        <button id="cancel">cancel</button>
+        <button id="submit">submit</button>
+    </div>
+</div>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/message.js"></script>
+<script src="/javascripts/paginate.js"></script>
+<script src="/javascripts/replys/replys.js"></script>
+</body>
+</html>
