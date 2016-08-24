@@ -153,6 +153,7 @@ $(document).ready(function () {
         var _useful = [];
         var num = 0;
         var i;
+        paginate.page = 0;
         for (i = 0; i < article.length; i ++) {
             if (article[i].leftSpan === $account.html()) {
                 _useful[num++] = article[i];
