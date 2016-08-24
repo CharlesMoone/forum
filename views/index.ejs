@@ -15,22 +15,42 @@
     nav div:last-child {
       background-image: url('/images/my.png');
     }
+    section article {
+      -webkit-transition: all 0.618s;
+      -moz-transition: all 0.618s;
+      -ms-transition: all 0.618s;
+      -o-transition: all 0.618s;
+      transition: all 0.618s;
+    }
+    section article:hover {
+      cursor: pointer;
+      -webkit-box-shadow: 5px 5px 5px #EEEEEE;
+      -moz-box-shadow: 5px 5px 5px #EEEEEE;
+      box-shadow: 5px 5px 5px #EEEEEE;
+      top: -5px;
+      left: -5px;
+    }
+    section article > p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   </style>
 </head>
 <body>
   <div id="top"><span>welcome , <span id="name"><%= account %></span></span>&nbsp;&nbsp;<span id="quit">quit</span></div>
   <header>
     <img src="/images/logo.png" alt="logo" />
-    <article>
+    <div>
       <h1>KNOWNSEC</h1>
       <p><span>Major</span><span>Absorbed</span><span>Share</span></p>
-    </article>
+    </div>
   </header>
   <content>
     <nav>
       <div id="write"></div>
-      <div></div>
-      <div></div>
+      <div id="all"></div>
+      <div id="my"></div>
     </nav>
     <section id="noteBody">
     </section>

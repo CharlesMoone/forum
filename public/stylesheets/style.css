@@ -32,12 +32,17 @@ header {
     align-items: center;
     width: 940px;
     min-height: 200px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: default;
 }
 header img {
     width: 200px;
     height: 200px;
 }
-header article {
+header div {
     display: inherit;
     flex: 1;
     flex-flow: column nowrap;
@@ -55,10 +60,10 @@ header h1 {
     margin: 0 0 0 20px;
     font-weight: bold;
 }
-header article p {
+header div p {
     text-align: right;
 }
-header article span {
+header div span {
     font-size: 36px;
     color: #72C3EF;
     margin: 0 18px;
@@ -88,13 +93,14 @@ section {
     flex-flow: column nowrap;
 }
 section article {
+    position: relative;
+    top: 0;
+    left: 0;
     background: #FBFBFB;
     margin: 0 0 20px 0;
-    padding: 10px 15px;
-    min-width: 867px;
-    min-height: 93px;
 }
 section article h4 {
+    padding: 10px 10px 0;
     font-size: 24px;
     font-weight: normal;
     color: #1885BA;
@@ -124,14 +130,13 @@ section h4 > p:hover {
     transform: rotate(180deg);
 }
 section article > p {
+    padding: 0 10px;
     font-size: 16px;
     width: 867px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     color: rgba(0, 0, 0, 0.5);
 }
 section article > span {
+    padding: 0 10px 10px;
     display: inline-block;
     font-size: 14px;
     width: 427px;
