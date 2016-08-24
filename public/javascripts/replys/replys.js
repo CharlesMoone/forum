@@ -1,17 +1,37 @@
 $(document).ready(function () {
+    /**
+     * 时间转换插件, 绑定在$中
+     */
     ($.timeConvert = function (time) {
         time = new Date(+time);
         return time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate()+' '+ (time.getHours().toString().length > 1 ? time.getHours() : ('0' + time.getHours())) +':'+(time.getMinutes().toString().length > 1 ? time.getMinutes() : ('0' + time.getMinutes()));
     })($);
 
+    /**
+     * 获取dom对象
+     */
     var $quit = $("#quit");
     var $write = $("#write");
     var $newReply = $("#newReply");
     var $noteBody = $("#noteBody");
+    var $submit = $("#submit");
+    var $cancel = $("#cancel");
 
+    /**
+     * 获取当前帖子的id
+     */
     var id = getParameterByName('id', window.location.href);
 
+    /**
+     * 声明数据为array
+     * @type {Array}
+     */
     var useful = [];
+
+    /**
+     * 创建分页器
+     * @type {Paginate}
+     */
     var paginate = new Paginate({
         id: 'noteBody',
         article: useful,
@@ -47,21 +67,31 @@ $(document).ready(function () {
         }
     });
 
+    /**
+     * 获取所有数据, 并填充在页面上
+     */
     getAll(id, useful, paginate);
 
+    /**
+     * 退出事件绑定
+     */
     $quit.click(function () {
         $.ajax({url: '/user/quit', method: 'post', dataType: 'json', success: function (data) {
             window.location.reload();
         }});
     });
 
+    /**
+     * 打开新增回复模块
+     */
     $write.click(function () {
         $newReply.css('display', 'inherit');
     });
 
-    var $submit = $("#submit");
-    var $cancel = $("#cancel");
-
+    /**
+     * 提交帖子内容
+     * url: '/note/new'
+     */
     $submit.click(function () {
         var replyContent = $("#replyContent").val();
         var data = replyContent ? {

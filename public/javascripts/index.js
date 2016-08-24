@@ -138,10 +138,16 @@ $(document).ready(function () {
         $newNote.css('display', 'none');
     });
 
+    /**
+     * 获取所有帖子
+     */
     $allNote.click(function () {
         getAll(useful, paginate);
     });
 
+    /**
+     * 获取所有我的帖子
+     */
     $myNote.click(function () {
         var article = paginate.article;
         var _useful = [];

@@ -63,7 +63,7 @@ html方面的布局采用了flex布局, flex是css3新出的一个布局, 该布
 
 详细功能可以见[http://temp.zmade.cn]
 
-    账号tjgj, 密码guo123456
+    账号密码请联系我邮箱
     !!!请不要对账号内数据进行操作
     
 ####弹窗 *message.js*
