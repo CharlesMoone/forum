@@ -112,7 +112,13 @@ $(document).ready(function () {
             data: data,
             success: function (data) {
                 if (data.code !== '001') {
-                    new Inform({title: 'Inform', content: 'save error!'}).alert(function () {
+                    if (data.code === '005') {
+                        new Inform({title: 'Inform', content: data.message}).alert(function () {
+                            window.history.back();
+                        });
+                        return ;
+                    }
+                    new Inform({title: 'Inform', content: data.message}).alert(function () {
                         $('.popMsg').remove();
                     });
                     return ;
@@ -130,6 +136,9 @@ $(document).ready(function () {
         });
     });
 
+    /**
+     * 关闭提交帖子模块
+     */
     $cancel.click(function () {
         $newReply.css('display', 'none');
     });

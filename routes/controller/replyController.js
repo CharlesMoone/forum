@@ -1,6 +1,7 @@
 var express = require('express');
 
 var db = require('../db/reply');
+var noteDb = require('../db/note');
 var router = express.Router();
 
 router.get('/', function (req, res) {
@@ -25,16 +26,24 @@ router.post('/all', function (req, res) {
 
 router.post('/add', function (req, res) {
     var data = req.body;
-    data.userId = req.session.userId;
-    data.account = req.session.account;
-    data.createTime = new Date().getTime();
-    db.addReply(data, function (err, doc) {
+    noteDb.findNote({_id: data.targetId}, function (err, doc) {
         if (err) {
             res.send({code: '003', message: 'database error!', result: null});
-        } else if (!doc) {
-            res.send({code: '004', message: 'doc save error!', result: null});
+        } else if (!doc.length) {
+            res.send({code: '005', message: 'this article is deleted!', result: null});
         } else {
-            res.send({code: '001', message: 'success', result: null});
+            data.userId = req.session.userId;
+            data.account = req.session.account;
+            data.createTime = new Date().getTime();
+            db.addReply(data, function (err, doc) {
+                if (err) {
+                    res.send({code: '003', message: 'database error!', result: null});
+                } else if (!doc) {
+                    res.send({code: '004', message: 'doc save error!', result: null});
+                } else {
+                    res.send({code: '001', message: 'success', result: null});
+                }
+            });
         }
     });
 });
