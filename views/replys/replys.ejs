@@ -6,10 +6,10 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/message.css" />
     <style>
-        nav div:first-child {
+        nav div:first-child:before {
             background-image: url('/images/back.png');
         }
-        nav div:nth-child(2) {
+        nav div:nth-child(2):before {
             background-image: url('/images/write.png');
         }
         section article:first-child h4 p {
@@ -28,8 +28,14 @@
 </header>
 <content>
     <nav>
-        <a href="/"><div id="back"></div></a>
-        <div id="write"></div>
+        <a href="/">
+            <div id="back">
+                <p>BACK</p>
+            </div>
+        </a>
+        <div id="write">
+            <p>NEW</p>
+        </div>
     </nav>
     <section id="noteBody">
     </section>

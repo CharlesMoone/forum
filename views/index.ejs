@@ -6,13 +6,13 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel="stylesheet" href="/stylesheets/message.css" />
   <style>
-    nav div:first-child {
+    nav div:first-child:before {
       background-image: url('/images/write.png');
     }
-    nav div:nth-child(2) {
+    nav div:nth-child(2):before {
       background-image: url('/images/all.png');
     }
-    nav div:last-child {
+    nav div:last-child:before {
       background-image: url('/images/my.png');
     }
     section article {
@@ -48,9 +48,15 @@
   </header>
   <content>
     <nav>
-      <div id="write"></div>
-      <div id="all"></div>
-      <div id="my"></div>
+      <div id="write">
+        <p>NEW</p>
+      </div>
+      <div id="all">
+        <p>ALL</p>
+      </div>
+      <div id="my">
+        <p>MY</p>
+      </div>
     </nav>
     <section id="noteBody">
     </section>

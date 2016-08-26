@@ -74,18 +74,58 @@ content {
     padding: 35px 0 0;
     width: 1040px;
 }
-nav div {
+nav {
     margin: 0 0 20px 35px;
+}
+nav div {
     width: 108px;
     height: 108px;
-    background: #72C3EF no-repeat 50% 50%/50% 50%;
+    background: #72C3EF;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-}
-nav div:hover {
-    background-color: #1885BA;
     cursor: pointer;
+}
+nav div:before {
+    content: '\20';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    line-height: 2.5;
+    font-size: 180%;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    background: no-repeat 50% 50%/50% 50%;
+}
+nav > div, nav > a > div {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 20px 0;
+}
+nav > div:hover:before, nav > a > div:hover:before {
+    left: 0;
+}
+nav p {
+    position: relative;
+    left: 0;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    line-height: 108px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+nav > div:hover p,
+nav > a > div:hover p {
+    left: 100%;
 }
 section {
     display: inherit;

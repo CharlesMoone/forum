@@ -39,28 +39,31 @@ $(document).ready(function () {
             var $article = $('article');
             $article.click(function (e) {
                 if ($(e.target).hasClass('remove')) {
-                    $.ajax({
-                        url: '/reply/remove',
-                        method: 'post',
-                        dataType: 'json',
-                        data: {
-                            _id: $(this).find('input[type=hidden]').data('id')
-                        },
-                        success: function (data) {
-                            if (data.code !== '001') {
-                                new Inform({title: 'Inform', content: data.message}).alert(function () {
+                    var that = this;
+                    new Inform({title: 'Inform', content: 'sure to remove?'}).alert(function () {
+                        $.ajax({
+                            url: '/reply/remove',
+                            method: 'post',
+                            dataType: 'json',
+                            data: {
+                                _id: $(that).find('input[type=hidden]').data('id')
+                            },
+                            success: function (data) {
+                                if (data.code !== '001') {
+                                    new Inform({title: 'Inform', content: data.message}).alert(function () {
+                                        $('.popMsg').remove();
+                                    });
+                                    return ;
+                                }
+                                getAll(id, useful, paginate);
+                            },
+                            error: function (err) {
+                                console.error(err);
+                                new Inform({title: 'Inform', content: 'With some unknown error!'}).alert(function () {
                                     $('.popMsg').remove();
                                 });
-                                return ;
                             }
-                            getAll(id, useful, paginate);
-                        },
-                        error: function (err) {
-                            console.error(err);
-                            new Inform({title: 'Inform', content: 'With some unknown error!'}).alert(function () {
-                                $('.popMsg').remove();
-                            });
-                        }
+                        });
                     });
                 }
             });
