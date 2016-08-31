@@ -1,6 +1,2 @@
-# Created by .ignore support plugin (hsz.mobi)
-
-*.xml
-*.xml
-
-.idea/workspace.xml
+.idea
+node_modules
